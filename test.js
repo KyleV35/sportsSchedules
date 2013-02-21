@@ -5,5 +5,9 @@ csv()
 	columns: true
 })
 .on('record',function(row,index) {
-	console.log('#'+index + " " + row["START DATE"].trim() + " " + row["START TIME (PT)"].trim() + " " + row["AWAY"].trim() + " " + row["HOME"].trim());
+    var tvStation = "";
+    if (row["TV STATION"] != undefined) {
+        tvStation = row["TV STATION"];
+    }
+	console.log('#'+index + " " + row["START DATE"].trim() + " " + row["START TIME (PT)"].trim() + " " + row["AWAY"].trim() + " " + row["HOME"].trim() + " " + tvStation.trim());
 });
