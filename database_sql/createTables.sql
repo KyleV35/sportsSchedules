@@ -2,8 +2,10 @@ DROP TABLE IF EXISTS Teams CASCADE;
 DROP TABLE IF EXISTS Basketball_Teams CASCADE;
 DROP TABLE IF EXISTS NBA_Teams CASCADE;
 
+DROP TABLE IF EXISTS Game;
+
 CREATE TABLE Teams (
-	team_id SERIAL PRIMARY KEY,
+	team_id BIGSERIAL PRIMARY KEY,
 	name varchar(200),
 	city varchar(100),
 	state varchar(100),
@@ -11,12 +13,22 @@ CREATE TABLE Teams (
 );
 
 CREATE TABLE Basketball_Teams (
-	team_id SERIAL PRIMARY KEY,
+	team_id BIGINT PRIMARY KEY,
 	FOREIGN KEY (team_id) REFERENCES Teams(team_id)
 );
 
 CREATE TABLE NBA_Teams (
-	team_id SERIAL PRIMARY KEY,
+	team_id BIGINT PRIMARY KEY,
 	conference varchar(100),
 	FOREIGN KEY (team_id) REFERENCES Basketball_Teams(team_id)
+);
+
+CREATE TABLE Game (
+	game_id SERIAL PRIMARY KEY,
+	time timestamp with time zone,
+	home_team_id BIGINT,
+	away_team_id BIGINT,
+	tv_station varchar(100),
+	FOREIGN KEY (home_team_id) REFERENCES Teams(team_id),
+	FOREIGN KEY (away_team_id) REFERENCES Teams(team_id)
 );
