@@ -13,7 +13,7 @@ exports.findAllNBATeams = function(req,res) {
 	client.connect();
     var query = client.query('SELECT * from teams NATURAL JOIN NBA_teams');
   	query.on('row', function(row) {
-  		var NBA_team = new team.NBATeam(row["name"],row["city"],row["state"],row["stadium"],row["conference"]);
+  		var NBA_team = new team.NBATeam(row["team_id"],row["name"],row["city"],row["state"],row["stadium"],row["conference"]);
   		teams_array.push(NBA_team.toJSON());
   	});
   	query.on('end', function(result) {
@@ -25,6 +25,32 @@ exports.findAllNBATeams = function(req,res) {
   		client.end();
   		response_json = {
   			"teams" : [],
+  			"error" : "An error occured, we're working to fix it!"
+  		}
+  		res.json(response_json);
+  	});
+}
+
+exports.findNBATeamByID = function(req,res) {
+	var client = new pg.Client(connectionString);
+	var id = req.params.id;
+	var JSON_response = {};
+	JSON_response.team = "";
+	client.connect();
+    var query = client.query('SELECT * from teams NATURAL JOIN NBA_teams where team_id='+id);
+    query.on('row', function(row) {
+  		var NBA_team = new team.NBATeam(row["team_id"],row["name"],row["city"],row["state"],row["stadium"],row["conference"]);
+  		JSON_response.team = NBA_team.toJSON();
+  	});
+  	query.on('end', function(result) {
+  		client.end();
+  		res.json(JSON_response);
+  	});
+  	query.on('error', function(error) {
+  		console.log("error");
+  		client.end();
+  		response_json = {
+  			"team" : "",
   			"error" : "An error occured, we're working to fix it!"
   		}
   		res.json(response_json);

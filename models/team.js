@@ -1,11 +1,13 @@
-var Team = function(name,city,state,stadium) {
+var Team = function(team_id,name,city,state,stadium) {
 	this.name = name;
+	this.team_id = team_id;
 	this.city = city;
 	this.state = state;
 	this.stadium = stadium;
 
 	this.toJSON = function() {
 		return {
+			"team_id" : this.team_id,
 			"name" : this.name,
 			"city" : this.city,
 			"state": this.state,
@@ -14,8 +16,8 @@ var Team = function(name,city,state,stadium) {
 	}
 }
 
-exports.NBATeam = function(name,city,state,stadium, conference) {
-	this.team = new Team(name,city,state,stadium);
+exports.NBATeam = function(team_id,name,city,state,stadium,conference) {
+	this.team = new Team(team_id,name,city,state,stadium);
 	this.conference = conference;
 	this.team_type = "NBA";
 	this.sport = "basketball";
