@@ -8,14 +8,15 @@ exports.mainTest = function(req,res) {
 	console.log("Hit again!");
 	console.log("Client: "+ client);
 	client.connect();
-    var query = client.query('SELECT * from games');
+    var query = client.query('SELECT * from teams');
     console.log("Query: " +query);
+    var response = "Kyle";
   	query.on('row', function(row) {
-  		//console.log("I'm alive!");
+  		response += "<p>" + row["name"] + "</p>";
   	});
   	query.on('end', function(result) {
   		console.log("done");
   		client.end();
+  		res.send(response);
   	});
-	res.send("I'm here!");
 }
