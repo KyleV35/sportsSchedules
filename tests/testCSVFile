@@ -1,0 +1,1 @@
+INSERT INTO game (time, home_team_id, away_team_id, tv_station) SELECT TIMESTAMP '2/4/1090 07:30:00-8', teams1.team_id, teams2.team_id, ' ESPN' FROM teams as teams1, teams as teams2 WHERE teams1.name = 'Knicks' and teams2.name = 'Warriors';

@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS Teams CASCADE;
 DROP TABLE IF EXISTS Basketball_Teams CASCADE;
 DROP TABLE IF EXISTS NBA_Teams CASCADE;
 
-DROP TABLE IF EXISTS Game;
+DROP TABLE IF EXISTS Games;
 
 CREATE TABLE Teams (
 	team_id BIGSERIAL PRIMARY KEY,
@@ -23,7 +23,7 @@ CREATE TABLE NBA_Teams (
 	FOREIGN KEY (team_id) REFERENCES Basketball_Teams(team_id)
 );
 
-CREATE TABLE Game (
+CREATE TABLE Games (
 	game_id SERIAL PRIMARY KEY,
 	time timestamp with time zone,
 	home_team_id BIGINT,

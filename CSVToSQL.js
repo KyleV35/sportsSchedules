@@ -49,8 +49,7 @@ function CSVToSQL(csv_input,sql_output) {
             // If tv_station exists, add single quotes around it
             tv_station_sql_string = "'" + tv_station + "'";
         }
-        //console.log('#'+index + " " + row["START DATE"].trim() + " " + row["START TIME (PT)"].trim() + " " + row["AWAY"].trim() + " " + row["HOME"].trim() + " " + tvStation.trim());
-        var insert_statement = "INSERT INTO game (time, home_team_id, away_team_id, tv_station)";
+        var insert_statement = "INSERT INTO games (time, home_team_id, away_team_id, tv_station)";
         var select_statement = "SELECT TIMESTAMP '" + start_date + " " + formatted_time + "', teams1.team_id, teams2.team_id, " + tv_station_sql_string;
         var from_statement = "FROM teams as teams1, teams as teams2";
         var where_statement = "WHERE teams1.name = '" + home_team + "' and teams2.name = '" + away_team + "'";
