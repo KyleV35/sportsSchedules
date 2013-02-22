@@ -6,6 +6,7 @@
   "dependencies": {
     "express": "3.1.0",
     "csv" : "0.2.7",
-    "pg" : "0.12.3"
+    "pg" : "0.12.3",
+    "sequelize" : "1.6.0-beta4" 
   }
 }
