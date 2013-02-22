@@ -6,12 +6,17 @@ var connectionString = "pg://" + database.user + ":" + database.password + "@" +
 var team = require('../models/team');
 
 exports.findAllNBATeams = function(req,res) {
+	// Initialize client and response
 	var client = new pg.Client(connectionString);
+	client.connect();
 	var JSON_response = {};
 	var teams_array = [];
 	JSON_response.teams = teams_array;
-	client.connect();
+
+	// Find all NBA Teams
     var query = client.query('SELECT * from teams NATURAL JOIN NBA_teams');
+
+    // For each team, create team and push JSON to teams_array
   	query.on('row', function(row) {
   		var NBA_team = new team.NBATeam(row["team_id"],row["name"],row["city"],row["state"],row["stadium"],row["conference"]);
   		teams_array.push(NBA_team.toJSON());
@@ -33,10 +38,10 @@ exports.findAllNBATeams = function(req,res) {
 
 exports.findNBATeamByID = function(req,res) {
 	var client = new pg.Client(connectionString);
+	client.connect();
 	var id = req.params.id;
 	var JSON_response = {};
 	JSON_response.team = "";
-	client.connect();
     var query = client.query('SELECT * from teams NATURAL JOIN NBA_teams where team_id='+id);
     query.on('row', function(row) {
   		var NBA_team = new team.NBATeam(row["team_id"],row["name"],row["city"],row["state"],row["stadium"],row["conference"]);
