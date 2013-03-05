@@ -10,4 +10,8 @@
     "sequelize" : "1.6.0-beta4",
     "jade" : "0.28.1"
   }
+  "engines" : {
+    "node": "0.8.4",
+    "npm": "1.1.41"
+  }
 }
