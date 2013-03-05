@@ -1,9 +1,8 @@
 var api_controller = require("./controllers/api");
+var index_controller = require("./controllers/index");
 
 exports.setUpRoutes = function(app) {
-	app.get("/", function(req,res) {
-		res.send("I'm here!");
-	});
+	app.get("/", index_controller.homePage);
 	app.get("/teams/nba", api_controller.findAllNBATeams);
 	app.get("/teams/nba/:id", api_controller.findNBATeamByID);
 	app.get("/games/nba", api_controller.findAllNBAGames);

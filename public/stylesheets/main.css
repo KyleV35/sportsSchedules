@@ -1,0 +1,67 @@
+html {
+	background-color: #FFFFFF;
+}
+
+h1#title {
+	font-size: 40px;
+	font-family: 'Roboto Condensed', sans-serif;
+	color: #338800;
+}
+
+h2#subtitle {
+	font-size: 20px;
+	font-family: 'Roboto Condensed', sans-serif;
+	color: #77BB00;
+}
+
+div#container {
+	width: 960px;
+	margin: auto;
+	background-color: #FFFFFF;
+}
+
+header {
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+div#main-content {
+	margin-top: 50px;
+}
+
+ul#main-content-list {
+	width: 300px;
+	float: left;
+}
+
+div#main-content-example {
+	float: left;
+}
+
+ul#main-content-list > li {
+	margin-top: 20px;
+	color: #00BBDD;
+	font-size: 50px;
+	display: inline-block;
+	text-shadow: 1px 1px 1px #666666;
+}
+
+li > a {
+	color: #00BBDD;
+}
+
+li > a {
+	color: #00BBDD;
+}
+
+pre {
+	background-color: #F8F8F8;
+	border: 1px solid #CCCCCC;
+    border-radius: 2px 2px 2px 2px;
+    padding: 10px;
+}
+
+ul#main-content-list > li > a:hover {
+	color: #0066AA;
+}
