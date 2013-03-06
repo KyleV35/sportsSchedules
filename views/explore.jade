@@ -16,6 +16,10 @@ block content
       p.api-parameters-details 
         span.parameter-name team_id
         |: only return games for the team with the given id. (OPTIONAL)
+      p.api-parameters-details
+        span.parameter-name location
+        |: specifies whether 'home', 'away', or 'all' games should be returned. 
+        | Use only if team_id is specified. (OPTIONAL: Default = 'all')
     div.api-method
       h4.api-method-title 
         a(href="/games/nba/1") /games/nba/:id
@@ -27,13 +31,14 @@ block content
         | None
     div.api-method
       h4.api-method-title 
-        a(href="/teams/nba/") /teams/nba
+        a(href="/teams/nba") /teams/nba
       p.api-description
         | Get JSON data for a every nba team.
       p.api-parameters 
         | Parameters:
       p.api-parameters-details
-        |  None
+        span.parameter-name division
+        |: only return teams in the 'Atlantic','Central','Southeast','Northwest','Pacific', or 'Southwest' divisions. (OPTIONAL: default = 'all')
     div.api-method
       h4.api-method-title
         a(href="/teams/nba/1") /teams/nba/:id

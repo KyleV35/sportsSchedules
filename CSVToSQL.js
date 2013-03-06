@@ -70,7 +70,7 @@ function convertTimeToSQLFormat(time) {
     var minutes = parseInt(time.substring(colon_index+1,space_index));
     if (isNaN(minutes)) return null;
     var am_pm = time.substring(space_index+1).toUpperCase();
-    if (am_pm === "PM") hour = hour + 12;
+    if (am_pm === "PM" && hour!= 12) hour = hour + 12;
     var hour_string = hour.toString();
     if (hour_string.length < 2) hour_string = '0' + hour_string;
     var minutes_string = minutes.toString();

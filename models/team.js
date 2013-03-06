@@ -26,6 +26,7 @@ exports.NBATeam = function(team_id,name,city,state,stadium,conference) {
 		var dict = this.team.toJSON();
 		dict.sport = this.sport;
 		dict.team_type = this.team_type;
+		dict.division = this.conference;
 		return dict;
 	}
 }

@@ -9,12 +9,21 @@ exports.findAllNBATeams = function(req,res) {
     // Initialize client and response
     var client = new pg.Client(connectionString);
     client.connect();
+    var division = req.query["division"];
+    if (division == undefined) {
+        division = 'all';
+    }
     var JSON_response = {};
     var teams_array = [];
     JSON_response.teams = teams_array;
 
     // Find all NBA Teams
-    var query = client.query('SELECT * from teams NATURAL JOIN NBA_teams');
+    var queryText = 'SELECT * from teams NATURAL JOIN NBA_teams';
+    if (division != 'all') {
+        queryText = queryText + " WHERE NBA_teams.conference = '"+ division + "'";
+    }
+    console.log(queryText)
+    var query = client.query(queryText);
 
     // For each team, create team and push JSON to teams_array
     query.on('row', function(row) {
@@ -26,7 +35,7 @@ exports.findAllNBATeams = function(req,res) {
         res.json(JSON_response);
     });
     query.on('error', function(error) {
-        console.log("error");
+        console.log(error);
         client.end();
         response_json = {
             "teams" : [],
@@ -168,16 +177,35 @@ exports.findNBAGameByID = function(req,res) {
     });
 }
 
-var findNBAGamesForTeam = function(req,res, team_id) {
+var findNBAGamesForTeam = function(req,res,team_id) {
     // Initialize client and response
     var client = new pg.Client(connectionString);
     client.connect();
     var id = team_id;
+
+    var location = req.query["location"];
+    if (location == undefined) {
+        // Default is 'all'
+        location = "all";
+    }
+
+    console.log(location)
     var JSON_response = {};
     var games_array = [];
     JSON_response.games = games_array;
 
-    var forTeamSQL = "WHERE away_team.team_id = " + id +" or home_team.team_id = " + id;
+    var forTeamSQL = "";
+    if (location == "all") {
+        // All
+        forTeamSQL = "WHERE away_team.team_id = " + id +" or home_team.team_id = " + id;
+    } else if (location == "home") {
+        // Home
+        console.log("Cool")
+        forTeamSQL = "WHERE home_team.team_id = " + id;
+    } else {
+        // Away
+        forTeamSQL = "WHERE away_team.team_id = " + id;
+    }
     // Find all NBA Games
     var query = client.query(findAllGamesSQL + forTeamSQL);
 
