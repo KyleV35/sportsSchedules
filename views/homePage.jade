@@ -1,52 +1,47 @@
 extends base
 
 block title
-    title Sports Schedules
+    title Sports Game Times
 
 block head
-    link(href='http://fonts.googleapis.com/css?family=Roboto+Condensed', rel='stylesheet')
     script(src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js")
 
 block content
-    div#container
-        header
-            h1#title Sports Game Times
-            h2#subtitle API for Sports Games
-        div#main-content
-            ul#main-content-list
-                li
-                  a(href="#") Explore API
-                li 
-                  a(href="#") Examples
-                li 
-                  a(href="#") About Us
-            div#main-content-example
-              pre.prettyprint.linenums
-                | function handleData(data) {
-                |   console.log(data);
-                | }
-                |  
-                | $.get('http://www.sportsgametimes.com/games/nba', function(data) {
-                |   handleData(data);
-                | });
-                |  
-                |/* Typical Response:
-                |{
-                |    "games": [
-                |       {
-                |         "game_id": 1,
-                |         "time": "2012-10-14T08:00:00.000Z",
-                |         "tv_station": "NBATV",
-                |         "home_team": {
-                |           "team_id": 13,
-                |           "team_name": "Heat"
-                |         },
-                |         "away_team": {
-                |           "team_id": 22,
-                |           "team_name": "Clippers"
-                |         }
-                |       },
-                |       ...
-                |    ]
-                |}
-                | */
+  div#main-content
+      ul#main-content-list
+          li
+            a(href="/explore") Explore API
+          li 
+            a(href="#") Examples
+          li 
+            a(href="#") About Us
+      div#main-content-example
+        pre.prettyprint.linenums
+          | function handleData(data) {
+          |   console.log(data);
+          | }
+          |  
+          | $.get('http://www.sportsgametimes.com/games/nba', function(data) {
+          |   handleData(data);
+          | });
+          |  
+          |/* Typical Response:
+          |{
+          |    "games": [
+          |       {
+          |         "game_id": 1,
+          |         "time": "2012-10-14T08:00:00.000Z",
+          |         "tv_station": "NBATV",
+          |         "home_team": {
+          |           "team_id": 13,
+          |           "team_name": "Heat"
+          |         },
+          |         "away_team": {
+          |           "team_id": 22,
+          |           "team_name": "Clippers"
+          |         }
+          |       },
+          |       ...
+          |    ]
+          |}
+          | */

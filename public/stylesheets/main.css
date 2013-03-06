@@ -2,13 +2,14 @@ html {
 	background-color: #FFFFFF;
 }
 
-h1#title {
+#title {
 	font-size: 50px;
 	font-family: 'Roboto Condensed', sans-serif;
 	color: #338800;
+	clear: both;
 }
 
-h2#subtitle {
+#subtitle {
 	font-size: 30px;
 	font-family: 'Roboto Condensed', sans-serif;
 	color: #77BB00;
@@ -41,6 +42,7 @@ p#footer-text {
 
 div#main-content {
 	margin-top: 50px;
+	margin-bottom: 10px;
 }
 
 ul#main-content-list {
@@ -65,7 +67,7 @@ li > a {
 	color: #00BBDD;
 }
 
-li > a {
+li > a:visted {
 	color: #00BBDD;
 }
 
@@ -78,6 +80,35 @@ pre {
     box-shadow: 2px 2px 2px #999999;
 }
 
+nav li {
+	display: inline-block;
+	float:left;
+	padding: 0px 4px;
+	border-right: 1px #999999 solid;
+}
+
+nav {
+	display: block;
+}
+
 ul#main-content-list > li > a:hover {
 	color: #0066AA;
+}
+
+#page-title {
+	font-size: 30px;
+	color: #338800;
+}
+
+.api-method-title {
+	font-size: 20px;
+	color: #0066AA;
+	padding-bottom: 5px;
+}
+
+.api-method {
+	margin-top: 20px;
+	padding: 10px;
+	border: 1px #666666 solid;
+	box-shadow: 2px 2px 2px #333333;
 }

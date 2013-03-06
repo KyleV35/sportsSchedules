@@ -1,0 +1,25 @@
+extends base
+
+block title
+  title Explore API
+
+block content
+  div#main-content
+    h3#page-title Explore The API
+    div.api-method
+      h4.api-method-title /games/nba
+      p.api-description
+      | Get JSON data for every game in the nba.
+    div.api-method
+      h4.api-method-title /games/nba/:id
+      p.api-description
+      | Get JSON data for a specific nba game, specified by :id.
+    div.api-method
+      h4.api-method-title /teams/nba/
+      p.api-description
+      | Get JSON data for a every nba team.
+    div.api-method
+      h4.api-method-title /teams/nba/:id
+      p.api-description
+      | Get JSON data for a specific nba team, specified by :id.
+

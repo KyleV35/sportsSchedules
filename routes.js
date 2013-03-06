@@ -10,4 +10,5 @@ exports.setUpRoutes = function(app) {
 	app.get("/test", function(req,res) {
 		res.send("Hello");
 	});
+    app.get("/explore", index_controller.explorePage); 
 }

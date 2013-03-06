@@ -1,12 +1,25 @@
 doctype 5
 html
-    head
-        meta(content='text/html; charset=utf-8', http-equiv='Content-Type')
-        block title
-        link(rel='stylesheet', href='/stylesheets/reset.css')
-        block head
-        link(rel='stylesheet', href='/stylesheets/main.css')
-    body
-        block content
-    footer
-        p#footer-text Kyle Vermeer, 2013.  Contact kvermeer at stanford.edu
+  head
+    meta(content='text/html; charset=utf-8', http-equiv='Content-Type')
+    block title
+    link(rel='stylesheet', href='/stylesheets/reset.css')
+    link(href='http://fonts.googleapis.com/css?family=Roboto+Condensed', rel='stylesheet')
+    block head
+    link(rel='stylesheet', href='/stylesheets/main.css')
+  body
+    div#container
+      header
+        nav
+          ul
+            li
+              a(href="/") Home
+            li
+              a(href="/explore") Explore API
+            li
+              a(href="#") Examples
+        h1#title Sports Game Times
+        h2#subtitle API for Sports Games
+      block content
+      footer
+          p#footer-text Kyle Vermeer, 2013.  Contact kvermeer at stanford.edu
