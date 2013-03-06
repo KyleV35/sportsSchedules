@@ -7,19 +7,40 @@ block content
   div#main-content
     h3#page-title Explore The API
     div.api-method
-      h4.api-method-title /games/nba
-      p.api-description
-      | Get JSON data for every game in the nba.
+      h4.api-method-title 
+        a(href="/games/nba") /games/nba
+      p.api-description 
+        | Get JSON data for every game in the nba.
+      p.api-parameters 
+        | Parameters:
+      p.api-parameters-details 
+        span.parameter-name team_id
+        |: only return games for the team with the given id. (OPTIONAL)
     div.api-method
-      h4.api-method-title /games/nba/:id
+      h4.api-method-title 
+        a(href="/games/nba/1") /games/nba/:id
       p.api-description
-      | Get JSON data for a specific nba game, specified by :id.
+        | Get JSON data for a specific nba game, specified by :id.
+      p.api-parameters 
+        | Parameters:
+      p.api-parameters-details
+        | None
     div.api-method
-      h4.api-method-title /teams/nba/
+      h4.api-method-title 
+        a(href="/teams/nba/") /teams/nba
       p.api-description
-      | Get JSON data for a every nba team.
+        | Get JSON data for a every nba team.
+      p.api-parameters 
+        | Parameters:
+      p.api-parameters-details
+        |  None
     div.api-method
-      h4.api-method-title /teams/nba/:id
+      h4.api-method-title
+        a(href="/teams/nba/1") /teams/nba/:id
       p.api-description
-      | Get JSON data for a specific nba team, specified by :id.
+        | Get JSON data for a specific nba team, specified by :id.
+      p.api-parameters 
+        | Parameters:
+      p.api-parameters-details
+        |  None
 

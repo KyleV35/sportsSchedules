@@ -75,7 +75,7 @@ SELECT home_team.name as home_team_name, \
     JOIN (teams NATURAL JOIN NBA_teams) away_team on games.away_team_id = away_team.team_id \
 ";
 
-exports.findAllNBAGames = function(req,res) {
+var findAllNBAGames = function(req,res) {
     // Initialize client and response
     var client = new pg.Client(connectionString);
     client.connect();
@@ -122,11 +122,57 @@ exports.findAllNBAGames = function(req,res) {
     });
 }
 
-exports.findNBAGamesForTeam = function(req,res) {
-    // Initialize client and response
+exports.findNBAGameByID = function(req,res) {
     var client = new pg.Client(connectionString);
     client.connect();
     var id = req.params.id;
+
+    var JSON_response = {};
+    var games_array = [];
+    JSON_response.games = games_array;
+
+    var query = client.query(findAllGamesSQL + " \
+    WHERE game_id = " + id);
+
+    query.on('row', function(row) {
+        var game = {
+            game_id : row["game_id"],
+            time : row["time"],
+            tv_station : row["tv_station"]
+        }
+        var home_team = {
+            team_id : row["home_team_id"],
+            team_name : row["home_team_name"]
+        }
+        var away_team = {
+            team_id : row["away_team_id"],
+            team_name : row["away_team_name"]
+        }
+        game.home_team = home_team;
+        game.away_team = away_team;
+        games_array.push(game);
+    });
+
+    query.on('end', function(result) {
+        client.end();
+        res.json(JSON_response);
+    });
+    query.on('error', function(error) {
+        console.log(error);
+        client.end();
+        response_json = {
+            "team" : "",
+            "error" : "An error occured, we're working to fix it!"
+        }
+        res.json(response_json);
+    });
+}
+
+var findNBAGamesForTeam = function(req,res, team_id) {
+    // Initialize client and response
+    var client = new pg.Client(connectionString);
+    client.connect();
+    var id = team_id;
     var JSON_response = {};
     var games_array = [];
     JSON_response.games = games_array;
@@ -169,4 +215,12 @@ exports.findNBAGamesForTeam = function(req,res) {
         }
         res.json(response_json);
     });
+}
+
+exports.findNBAGames = function(req,res) {
+    if (req.query["team_id"] != undefined) {
+        findNBAGamesForTeam(req,res,req.query["team_id"]);
+    } else {
+        findAllNBAGames(req,res);
+    }
 }
